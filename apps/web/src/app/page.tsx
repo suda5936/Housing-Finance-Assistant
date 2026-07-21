@@ -1,3 +1,5 @@
+import { SystemStatus } from "./system-status";
+
 const foundations = [
   "검증 가능한 주거비 계산",
   "버전형 정책 적격성 판정",
@@ -26,6 +28,8 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+
+        <SystemStatus />
 
         <div className="rounded-2xl border border-amber-400/30 bg-amber-400/10 p-5 text-sm text-amber-100">
           현재는 개발 기반을 구성한 초기 화면입니다. 정책 추천, 대출 승인 또는 계약 안전을 보장하지
