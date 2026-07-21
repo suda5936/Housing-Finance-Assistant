@@ -1,0 +1,33 @@
+{
+  "name": "homefit-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "청년 주거 의사결정 에이전트 모노레포",
+  "packageManager": "npm@10.9.3",
+  "workspaces": ["apps/web"],
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently --names web,api --prefix-colors cyan,magenta \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "npm run dev --workspace=@homefit/web",
+    "dev:api": "python -m uvicorn homefit_api.main:app --reload --app-dir apps/api --host 127.0.0.1 --port 8000",
+    "build": "npm run build:web",
+    "build:web": "npm run build --workspace=@homefit/web",
+    "lint": "npm run lint:web && npm run lint:python",
+    "lint:web": "npm run lint --workspace=@homefit/web",
+    "lint:python": "python -m ruff check apps/api",
+    "typecheck": "npm run typecheck:web && npm run typecheck:python",
+    "typecheck:web": "npm run typecheck --workspace=@homefit/web",
+    "typecheck:python": "python -m mypy apps/api/homefit_api",
+    "test": "npm run test:web && npm run test:python",
+    "test:web": "npm run test --workspace=@homefit/web",
+    "test:python": "python -m pytest apps/api/tests",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "10.0.3"
+  }
+}
