@@ -1,0 +1,153 @@
+{
+  "schema_version": "policy-catalog-v1",
+  "policies": [
+    {
+      "code": "seoul_youth_monthly_rent_2026",
+      "name": "2026년 서울시 청년월세지원",
+      "operator": "서울특별시",
+      "document_version": "2026-notice-2026-05-01",
+      "rule_version": "seoul-rent-2026-draft-v1",
+      "effective_from": "2026-05-01",
+      "effective_until": "2026-12-31",
+      "application_from": "2026-05-06",
+      "application_until": "2026-05-19",
+      "pass_status": "ELIGIBLE",
+      "pass_reason_code": "BASIC_REQUIREMENTS_POSSIBLY_MET",
+      "selection_not_guaranteed": true,
+      "regions": ["서울특별시"],
+      "housing_types": ["월세", "보증부월세", "주거용 오피스텔", "고시원"],
+      "source": {
+        "title": "2026년 서울시 청년월세지원 모집 공고",
+        "url": "https://housing.seoul.go.kr/site/main/board/notice/12667",
+        "published_on": "2026-04-30",
+        "checked_on": "2026-07-24",
+        "original_sha256": null,
+        "locator": "첨부파일 1 공고문 및 서울주거포털 사업개요"
+      },
+      "review": {
+        "status": "draft",
+        "author": "implementation-draft",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "conditions": [
+        {"code":"SEOUL_AGE_MIN","field":"age_years","operator":"greater_than_or_equal","expected":19,"source_section":"지원기준-연령","explanation":"신청연도 기준 19세 이상이어야 합니다."},
+        {"code":"SEOUL_AGE_MAX","field":"age_years","operator":"less_than_or_equal","expected":39,"source_section":"지원기준-연령","explanation":"신청연도 기준 39세 이하여야 합니다. 군복무 연장 예외는 공식 확인이 필요합니다."},
+        {"code":"SEOUL_REGION","field":"region","operator":"equals","expected":"서울특별시","source_section":"지원기준-거주지","explanation":"주민등록과 실제 임차주택이 서울이어야 합니다."},
+        {"code":"SEOUL_HOMELESS","field":"is_homeless","operator":"equals","expected":true,"source_section":"지원기준-주택소유","explanation":"무주택자여야 합니다."},
+        {"code":"SEOUL_DEPOSIT_MAX","field":"deposit","operator":"less_than_or_equal","expected":80000000,"source_section":"지원기준-임차보증금","explanation":"임차보증금은 8천만원 이하여야 합니다."},
+        {"code":"SEOUL_ADJUSTED_RENT_MAX","field":"seoul_adjusted_monthly_rent","operator":"less_than_or_equal","expected":900000,"source_section":"지원기준-월세환산","explanation":"월세 60만원 초과 시 보증금 환산액과 월세 합계가 90만원 이하여야 합니다."},
+        {"code":"SEOUL_INCOME_MIN","field":"median_income_ratio_percent","operator":"greater_than","expected":48,"source_section":"지원기준-소득","explanation":"기준 중위소득 48%를 초과해야 합니다."},
+        {"code":"SEOUL_INCOME_MAX","field":"median_income_ratio_percent","operator":"less_than_or_equal","expected":150,"source_section":"지원기준-소득","explanation":"기준 중위소득 150% 이하여야 합니다."},
+        {"code":"SEOUL_NO_PRIOR_BENEFIT","field":"received_same_seoul_support_before","operator":"equals","expected":false,"source_section":"신청제외-기수혜","explanation":"이전 서울시 청년월세지원 수급 이력이 없어야 합니다."},
+        {"code":"SEOUL_NO_DUPLICATE_SUPPORT","field":"receiving_other_monthly_rent_support","operator":"equals","expected":false,"source_section":"신청제외-중복수혜","explanation":"현재 중복되는 월세지원을 받고 있지 않아야 합니다."}
+      ],
+      "benefits": [
+        {"code":"SEOUL_MONTHLY_RENT_SUPPORT","summary":"실제 납부 월세를 월 최대 20만원까지 생애 1회 지원","maximum_amount":2400000,"maximum_monthly_amount":200000,"duration_months":12,"amount_note":"관리비는 제외하며 실제 월세가 20만원 미만이면 실제 납부액까지만 지원"}
+      ],
+      "duplicate_benefit_notes": ["이전 서울시 청년월세지원 수급자 제외", "국토교통부 또는 자치구 월세지원 수혜 중이면 제외"],
+      "exceptions": ["군복무기간에 따라 연령 상한을 최대 3세 연장할 수 있음", "가구 유형별 자격과 제출서류가 다름"],
+      "official_check_items": ["건강보험료 기준 소득·재산 조회", "가구 유형별 제출서류", "군복무 연령 연장", "전산 추첨에 따른 최종 선정"],
+      "required_documents": ["확정일자가 날인된 임대차계약서", "최근 월세 이체내역", "가족관계증명서", "필요 시 가구유형 증빙"],
+      "checklist": [
+        {"code":"CHECK_ADDRESS_MATCH","action":"주민등록 주소, 실제 거주지, 임대차계약서 주소가 모두 일치하는지 확인합니다.","source_section":"FAQ-거주지"},
+        {"code":"CHECK_SELECTION","action":"기본요건을 충족해도 전산 추첨 대상임을 확인합니다.","source_section":"선정기준"}
+      ]
+    },
+    {
+      "code": "youth_deposit_monthly_loan",
+      "name": "청년전용 보증부월세대출",
+      "operator": "주택도시기금",
+      "document_version": "official-page-checked-2026-07-24",
+      "rule_version": "youth-deposit-loan-draft-v1",
+      "effective_from": "2026-01-01",
+      "effective_until": null,
+      "application_from": null,
+      "application_until": null,
+      "pass_status": "OFFICIAL_CHECK_NEEDED",
+      "pass_reason_code": "BASIC_REQUIREMENTS_MET_BANK_REVIEW_REQUIRED",
+      "selection_not_guaranteed": true,
+      "regions": ["전국"],
+      "housing_types": ["보증부월세", "주거용 오피스텔"],
+      "source": {
+        "title": "주택도시기금 청년전용 보증부월세대출 대출안내",
+        "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+        "published_on": null,
+        "checked_on": "2026-07-24",
+        "original_sha256": null,
+        "locator": "대출대상 및 대상주택; 서울주거포털 공식 요약 교차확인"
+      },
+      "review": {"status":"draft","author":"implementation-draft","reviewer":null,"reviewed_at":null},
+      "conditions": [
+        {"code":"YOUTH_LOAN_AGE_MIN","field":"age_years","operator":"greater_than_or_equal","expected":19,"source_section":"대출대상-연령","explanation":"만 19세 이상이어야 합니다."},
+        {"code":"YOUTH_LOAN_AGE_MAX","field":"age_years","operator":"less_than_or_equal","expected":34,"source_section":"대출대상-연령","explanation":"만 34세 이하여야 합니다."},
+        {"code":"YOUTH_LOAN_INCOME","field":"annual_household_gross_income","operator":"less_than_or_equal","expected":50000000,"source_section":"대출대상-소득","explanation":"부부합산 연소득 5천만원 이하여야 합니다."},
+        {"code":"YOUTH_LOAN_ASSETS","field":"net_assets","operator":"less_than_or_equal","expected":345000000,"source_section":"대출대상-자산","explanation":"공식 안내의 순자산 기준 이하여야 합니다."},
+        {"code":"YOUTH_LOAN_HOMELESS","field":"is_homeless","operator":"equals","expected":true,"source_section":"대출대상-무주택","explanation":"세대원 전원이 무주택이어야 합니다."},
+        {"code":"YOUTH_LOAN_SINGLE_HEAD","field":"is_single_household_head","operator":"equals","expected":true,"source_section":"대출대상-세대주","explanation":"무주택 단독 세대주 또는 예비세대주여야 합니다."},
+        {"code":"YOUTH_LOAN_AREA","field":"area_sqm","operator":"less_than_or_equal","expected":60,"source_section":"대상주택-면적","explanation":"임차 전용면적 60㎡ 이하 주택이어야 합니다."},
+        {"code":"YOUTH_LOAN_DEPOSIT_PAID","field":"lease_deposit_paid_ratio_percent","operator":"greater_than_or_equal","expected":5,"source_section":"대출대상-임대차계약","explanation":"임차보증금의 5% 이상을 지급해야 합니다."},
+        {"code":"YOUTH_LOAN_NO_CONFLICT","field":"has_conflicting_fund_loan","operator":"equals","expected":false,"source_section":"대출대상-중복대출","explanation":"중복되는 기금·전세·주택담보대출이 없어야 합니다."}
+      ],
+      "benefits": [
+        {"code":"YOUTH_DEPOSIT_LOAN","summary":"임차보증금 대출","maximum_amount":45000000,"maximum_monthly_amount":null,"duration_months":24,"amount_note":"공식 요약 기준 보증금 대출한도 최대 4,500만원, 금리 연 1.3%; 실제 한도는 심사 결과에 따름"},
+        {"code":"YOUTH_MONTHLY_RENT_LOAN","summary":"월세금 대출","maximum_amount":12000000,"maximum_monthly_amount":500000,"duration_months":24,"amount_note":"월 20만원까지 연 0%, 초과분 연 1.0%; 실제 금리와 한도는 심사 결과에 따름"}
+      ],
+      "duplicate_benefit_notes": ["주택도시기금대출, 은행 전세자금대출 또는 주택담보대출 이용 여부를 확인해야 함"],
+      "exceptions": ["신용정보, 자산심사, 보증기관과 수탁은행 심사에 따라 거절되거나 한도가 달라질 수 있음"],
+      "official_check_items": ["자산심사", "신용도와 보증기관 보증 가능 여부", "대상주택 적격 여부", "은행의 실제 대출 승인과 한도"],
+      "required_documents": ["주민등록증", "주민등록등본", "건강보험자격득실확인서", "소득확인서류", "확정일자부 임대차계약서", "임차주택 등기사항전부증명서"],
+      "checklist": [
+        {"code":"CHECK_BANK_REVIEW","action":"기금e든든 또는 수탁은행에서 자산·신용·보증 심사를 받습니다.","source_section":"이용절차"},
+        {"code":"CHECK_APPLICATION_TIMING","action":"잔금지급일과 전입일 중 빠른 날을 기준으로 신청기한을 확인합니다.","source_section":"신청시기"}
+      ]
+    },
+    {
+      "code": "housing_stability_monthly_loan",
+      "name": "주거안정월세대출",
+      "operator": "주택도시기금",
+      "document_version": "official-page-checked-2026-07-24",
+      "rule_version": "stability-monthly-loan-draft-v1",
+      "effective_from": "2026-01-01",
+      "effective_until": null,
+      "application_from": null,
+      "application_until": null,
+      "pass_status": "OFFICIAL_CHECK_NEEDED",
+      "pass_reason_code": "BASIC_REQUIREMENTS_MET_BANK_REVIEW_REQUIRED",
+      "selection_not_guaranteed": true,
+      "regions": ["전국"],
+      "housing_types": ["월세", "주거용 오피스텔"],
+      "source": {
+        "title": "주택도시기금 주거안정월세대출 대출안내",
+        "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+        "published_on": null,
+        "checked_on": "2026-07-24",
+        "original_sha256": null,
+        "locator": "대출대상·대상주택·한도 및 금리"
+      },
+      "review": {"status":"draft","author":"implementation-draft","reviewer":null,"reviewed_at":null},
+      "conditions": [
+        {"code":"STABILITY_LOAN_TYPE","field":"applicant_type","operator":"in","expected":["preferred","general"],"source_section":"대출대상-우대형·일반형","explanation":"우대형 또는 일반형 해당 여부를 확인해야 합니다."},
+        {"code":"STABILITY_LOAN_INCOME","field":"annual_household_gross_income","operator":"less_than_or_equal","expected":50000000,"source_section":"대출대상-일반형 소득","explanation":"일반형은 부부합산 연소득 5천만원 이하여야 합니다."},
+        {"code":"STABILITY_LOAN_ASSETS","field":"net_assets","operator":"less_than_or_equal","expected":337000000,"source_section":"대출대상-자산","explanation":"부부합산 순자산 기준 이하여야 합니다."},
+        {"code":"STABILITY_LOAN_HOMELESS","field":"is_homeless","operator":"equals","expected":true,"source_section":"대출대상-무주택","explanation":"세대원 전원이 무주택이어야 합니다."},
+        {"code":"STABILITY_LOAN_HEAD","field":"is_household_head","operator":"equals","expected":true,"source_section":"대출대상-세대주","explanation":"세대주 또는 인정되는 예비세대주여야 합니다."},
+        {"code":"STABILITY_LOAN_AREA","field":"area_sqm","operator":"less_than_or_equal","expected":85,"source_section":"대상주택-면적","explanation":"일반 지역의 임차 전용면적은 85㎡ 이하여야 합니다."},
+        {"code":"STABILITY_LOAN_DEPOSIT","field":"deposit","operator":"less_than_or_equal","expected":100000000,"source_section":"대상주택-보증금","explanation":"보증금은 1억원 이하여야 합니다."},
+        {"code":"STABILITY_LOAN_RENT","field":"monthly_rent","operator":"less_than_or_equal","expected":600000,"source_section":"대상주택-월세","explanation":"월세는 60만원 이하여야 합니다."},
+        {"code":"STABILITY_LOAN_NO_CONFLICT","field":"has_conflicting_fund_loan","operator":"equals","expected":false,"source_section":"대출대상-중복대출","explanation":"중복되는 기금·전세·주택담보대출이 없어야 합니다."}
+      ],
+      "benefits": [
+        {"code":"STABILITY_MONTHLY_RENT_LOAN","summary":"저리 월세자금 대출","maximum_amount":14400000,"maximum_monthly_amount":600000,"duration_months":24,"amount_note":"우대형 연 1.3%, 일반형 연 1.8%로 안내되며 실제 금리와 한도는 심사 결과에 따름"}
+      ],
+      "duplicate_benefit_notes": ["주택도시기금대출, 은행 전세자금대출 또는 주택담보대출 이용 여부를 확인해야 함"],
+      "exceptions": ["우대형 세부 유형마다 증빙과 소득 기준이 다름", "비도시 읍·면 지역은 면적 예외가 있을 수 있음", "주거급여 수급액에 따라 대출한도가 조정될 수 있음"],
+      "official_check_items": ["우대형 세부 자격 증빙", "자산심사", "신용도와 보증 가능 여부", "수탁은행의 실제 승인과 한도"],
+      "required_documents": ["주민등록증", "주민등록등본", "소득·재직 확인서류", "확정일자부 임대차계약서", "임차주택 등기사항전부증명서", "우대형 증빙서류"],
+      "checklist": [
+        {"code":"CHECK_PREFERRED_TYPE","action":"우대형에 해당하면 해당 자격의 유효한 증빙서류를 준비합니다.","source_section":"대출대상-우대형"},
+        {"code":"CHECK_BANK_REVIEW","action":"기금e든든 또는 수탁은행에서 자산·신용·보증 심사를 받습니다.","source_section":"이용절차"}
+      ]
+    }
+  ]
+}

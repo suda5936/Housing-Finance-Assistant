@@ -1,0 +1,122 @@
+{
+  "schema_version": "policy-sources-v1",
+  "documents": [
+    {
+      "id": "seoul-youth-rent-2026-overview",
+      "policy_code": "seoul_youth_monthly_rent_2026",
+      "title": "2026년 서울시 청년월세지원 사업개요",
+      "institution": "서울특별시",
+      "url": "https://housing.seoul.go.kr/site/main/content/sh01_060513?tr_code=short",
+      "source_type": "official_web_page",
+      "published_on": "2026-04-30",
+      "checked_on": "2026-07-24",
+      "effective_from": "2026-05-01",
+      "effective_until": "2026-12-31",
+      "regions": ["서울특별시"],
+      "review_status": "pending",
+      "author": "implementation-draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "retrieval_status": "retrieved",
+      "content_sha256": "ecc163cce1e7f6a4ee429d37093d21cb26408ab3c47ae1b28bf8686ae5069ac2",
+      "sections": [
+        {
+          "heading": "지원대상",
+          "locator": "사업개요 > 01 지원대상",
+          "text": "신청일 기준 주민등록등본상 서울시에 거주하는 청년이며, 신청연도 기준 19세 이상 39세 이하 청년을 대상으로 한다. 임차보증금 8천만원 이하이고 월세 60만원 이하 건물에 월세로 거주해야 하며, 월세가 60만원을 초과하면 보증금 환산액과 월세 합계가 90만원 이하여야 한다. 기준 중위소득 48% 초과 150% 이하인 무주택자여야 한다. 군 복무기간을 고려해 지원 연령 상한을 최대 3세까지 연장할 수 있다.",
+          "condition_codes": ["SEOUL_AGE_MIN", "SEOUL_AGE_MAX", "SEOUL_REGION", "SEOUL_HOMELESS", "SEOUL_DEPOSIT_MAX", "SEOUL_ADJUSTED_RENT_MAX", "SEOUL_INCOME_MIN", "SEOUL_INCOME_MAX", "CHECK_ADDRESS_MATCH"]
+        },
+        {
+          "heading": "지원내용",
+          "locator": "사업개요 > 02 지원내용",
+          "text": "월 최대 20만원의 월세를 최대 12개월, 총 240만원까지 생애 1회 지원한다. 실제 납부하는 월세 금액까지만 지원한다.",
+          "condition_codes": []
+        },
+        {
+          "heading": "신청기간과 중복수혜",
+          "locator": "사업개요 > 신청기간 및 지원 불가 대상",
+          "text": "신청기간은 2026년 5월 6일 10시부터 5월 19일 18시까지다. 2026년 이전 서울시 청년월세지원 선정·수급자, 국토교통부 청년월세 한시 특별지원금 수혜 중인 사람, 자치구 청년월세 지원금 수혜 중인 사람은 지원할 수 없다. 기본 자격을 충족하더라도 적격자 대상 전산 추첨을 거쳐 최종 선정된다.",
+          "condition_codes": ["SEOUL_NO_PRIOR_BENEFIT", "SEOUL_NO_DUPLICATE_SUPPORT", "CHECK_SELECTION"]
+        }
+      ]
+    },
+    {
+      "id": "nhuf-youth-deposit-monthly-loan",
+      "policy_code": "youth_deposit_monthly_loan",
+      "title": "청년전용 보증부월세대출 대출안내",
+      "institution": "주택도시기금",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+      "source_type": "official_web_page",
+      "published_on": null,
+      "checked_on": "2026-07-24",
+      "effective_from": "2026-01-01",
+      "effective_until": null,
+      "regions": ["전국"],
+      "review_status": "pending",
+      "author": "implementation-draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "retrieval_status": "manual_snapshot",
+      "content_sha256": "fe16dc2c6465a9fd33864b3d8cdd4bc1d1494f9046a1d40f486072cfda5b2f83",
+      "sections": [
+        {
+          "heading": "대출대상",
+          "locator": "대출대상",
+          "text": "만 19세 이상 만 34세 이하의 무주택 단독 세대주 또는 예비세대주를 대상으로 한다. 임대차계약을 체결하고 임차보증금의 5% 이상을 지급해야 하며, 부부합산 연소득과 순자산 기준, 중복대출 제한을 함께 확인한다.",
+          "condition_codes": ["YOUTH_LOAN_AGE_MIN", "YOUTH_LOAN_AGE_MAX", "YOUTH_LOAN_HOMELESS", "YOUTH_LOAN_SINGLE_HEAD", "YOUTH_LOAN_DEPOSIT_PAID", "YOUTH_LOAN_INCOME", "YOUTH_LOAN_ASSETS", "YOUTH_LOAN_NO_CONFLICT"]
+        },
+        {
+          "heading": "대상주택",
+          "locator": "대상주택",
+          "text": "임차 전용면적 60제곱미터 이하의 주택과 주거용 오피스텔이 대상이며, 임차보증금과 월세 한도는 신청 시점의 공식 안내를 다시 확인해야 한다.",
+          "condition_codes": ["YOUTH_LOAN_AREA"]
+        },
+        {
+          "heading": "심사와 이용절차",
+          "locator": "이용절차 및 유의사항",
+          "text": "자산심사, 신용도, 보증기관의 보증 가능 여부와 수탁은행 심사를 거쳐 실제 승인 여부와 대출 한도가 결정된다. 잔금지급일과 전입일을 기준으로 적용되는 신청기한은 계약 전에 공식 안내와 수탁은행에서 다시 확인해야 한다.",
+          "condition_codes": ["CHECK_BANK_REVIEW", "CHECK_APPLICATION_TIMING"]
+        }
+      ]
+    },
+    {
+      "id": "nhuf-housing-stability-monthly-loan",
+      "policy_code": "housing_stability_monthly_loan",
+      "title": "주거안정월세대출 대출안내",
+      "institution": "주택도시기금",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+      "source_type": "official_web_page",
+      "published_on": null,
+      "checked_on": "2026-07-24",
+      "effective_from": "2026-01-01",
+      "effective_until": null,
+      "regions": ["전국"],
+      "review_status": "pending",
+      "author": "implementation-draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "retrieval_status": "manual_snapshot",
+      "content_sha256": "4d40c632f1c73e0ce12fd3022f776c3ef62f5aa2b9b0904092bb7c566c92de88",
+      "sections": [
+        {
+          "heading": "대출대상",
+          "locator": "대출대상 > 우대형·일반형",
+          "text": "우대형 또는 일반형 요건에 해당하는 무주택 세대주를 대상으로 하며, 부부합산 소득과 순자산 기준 및 중복대출 제한을 확인한다. 우대형은 유형별 자격 증빙이 필요하다.",
+          "condition_codes": ["STABILITY_LOAN_TYPE", "STABILITY_LOAN_INCOME", "STABILITY_LOAN_ASSETS", "STABILITY_LOAN_HOMELESS", "STABILITY_LOAN_HEAD", "STABILITY_LOAN_NO_CONFLICT", "CHECK_PREFERRED_TYPE"]
+        },
+        {
+          "heading": "대상주택",
+          "locator": "대상주택",
+          "text": "일반 지역의 임차 전용면적은 85제곱미터 이하이며 임차보증금과 월세 한도를 충족해야 한다. 비도시 읍·면 지역에는 면적 예외가 있을 수 있으므로 공식 확인이 필요하다.",
+          "condition_codes": ["STABILITY_LOAN_AREA", "STABILITY_LOAN_DEPOSIT", "STABILITY_LOAN_RENT"]
+        },
+        {
+          "heading": "심사와 한도",
+          "locator": "대출한도·금리 및 이용절차",
+          "text": "자산심사, 신용도와 보증 가능 여부, 수탁은행 심사를 거쳐 실제 승인 여부와 한도가 결정되며 주거급여 수급액에 따라 한도가 조정될 수 있다.",
+          "condition_codes": ["CHECK_BANK_REVIEW"]
+        }
+      ]
+    }
+  ]
+}

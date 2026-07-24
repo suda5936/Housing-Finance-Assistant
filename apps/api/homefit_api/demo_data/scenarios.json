@@ -1,0 +1,42 @@
+{
+  "dataset_version": "demo-scenarios-v1",
+  "reference_at": "2026-07-25T00:00:00Z",
+  "scenarios": [
+    {
+      "id": "balanced-seoul-youth",
+      "title": "균형형: 비용과 통근을 함께 비교",
+      "profile": {"monthly_income":"3000000","own_funds":"10000000","annual_rate":"4","initial_costs":"1200000"},
+      "weights": {"monthly_effective_cost":"40","commute_minutes":"25","deposit":"15","area_sqm":"10","risk_score":"10","infrastructure_score":"0"},
+      "candidates": [
+        {"id":"A","label":"망원동 안심집","district":"서울 마포구","deposit":"10000000","rent":"550000","maintenance":"70000","area":"33.5","months":12,"commute_minutes":38,"commute_cost":"62000","risk":"20","risk_basis":"등기부 확인, 특약 추가 확인 필요"},
+        {"id":"B","label":"성수동 직주집","district":"서울 성동구","deposit":"15000000","rent":"620000","maintenance":"55000","area":"29","months":12,"commute_minutes":22,"commute_cost":"65000","risk":"10","risk_basis":"현재 확인된 위험신호 없음"}
+      ],
+      "document_text":"소재지: 서울특별시 마포구 합성로 1\n보증금: 1,000만원\n월세: 55만원\n관리비: 7만원\n전용면적: 33.5㎡\n계약기간: 12개월",
+      "expected_winner":"A"
+    },
+    {
+      "id": "cost-first-tight-budget",
+      "title": "비용 우선형: 빠듯한 월 예산",
+      "profile": {"monthly_income":"2400000","own_funds":"8000000","annual_rate":"4.5","initial_costs":"900000"},
+      "weights": {"monthly_effective_cost":"60","commute_minutes":"15","deposit":"10","area_sqm":"5","risk_score":"10","infrastructure_score":"0"},
+      "candidates": [
+        {"id":"A","label":"신림 절약집","district":"서울 관악구","deposit":"8000000","rent":"450000","maintenance":"60000","area":"24","months":12,"commute_minutes":50,"commute_cost":"62000","risk":"15","risk_basis":"수도 배관 상태 재확인 필요"},
+        {"id":"B","label":"을지로 가까운집","district":"서울 중구","deposit":"5000000","rent":"650000","maintenance":"90000","area":"35","months":12,"commute_minutes":15,"commute_cost":"55000","risk":"10","risk_basis":"등기부와 관리비 내역 확인"}
+      ],
+      "document_text":"소재지: 서울특별시 관악구 합성길 2\n보증금: 800만원\n월세: 45만원\n관리비: 6만원\n전용면적: 24㎡\n계약기간: 1년",
+      "expected_winner":"A"
+    },
+    {
+      "id": "commute-first-offline-fallback",
+      "title": "통근 우선형: 외부 AI 없이 수동 입력",
+      "profile": {"monthly_income":"3500000","own_funds":"12000000","annual_rate":"3.8","initial_costs":"1500000"},
+      "weights": {"monthly_effective_cost":"25","commute_minutes":"50","deposit":"10","area_sqm":"5","risk_score":"10","infrastructure_score":"0"},
+      "candidates": [
+        {"id":"A","label":"가산 넓은집","district":"서울 금천구","deposit":"12000000","rent":"500000","maintenance":"70000","area":"38","months":12,"commute_minutes":55,"commute_cost":"65000","risk":"15","risk_basis":"통근시간 수동 확인"},
+        {"id":"B","label":"종로 가까운집","district":"서울 종로구","deposit":"15000000","rent":"680000","maintenance":"80000","area":"27","months":12,"commute_minutes":12,"commute_cost":"50000","risk":"10","risk_basis":"등기부 확인 완료, 계약 특약 확인 필요"}
+      ],
+      "document_text":"소재지: 서울특별시 종로구 합성로 3\n보증금: 1,500만원\n월세: 68만원\n관리비: 8만원\n전용면적: 27㎡\n계약기간: 12개월",
+      "expected_winner":"B"
+    }
+  ]
+}

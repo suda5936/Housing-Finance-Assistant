@@ -81,6 +81,8 @@ pydantic-core==2.46.4
     # via pydantic
 pydantic-settings==2.14.2
     # via homefit-api (pyproject.toml)
+pypdf==6.14.2
+    # via homefit-api (pyproject.toml)
 pygments==2.20.0
     # via pytest
 pyproject-hooks==1.2.0

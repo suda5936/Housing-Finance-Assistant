@@ -24,6 +24,9 @@
     "test": "npm run test:web && npm run test:python",
     "test:web": "npm run test --workspace=@homefit/web",
     "test:python": "python -m pytest apps/api/tests",
+    "eval:release": ".venv\\Scripts\\python.exe -c \"import runpy,sys; sys.path.insert(0,'apps/api'); runpy.run_module('homefit_api.evaluation',run_name='__main__')\"",
+    "ops:check": ".venv\\Scripts\\python.exe -c \"import runpy,sys; sys.path.insert(0,'apps/api'); runpy.run_module('homefit_api.operations',run_name='__main__')\"",
+    "demo:check": ".venv\\Scripts\\python.exe -c \"import runpy,sys; sys.path.insert(0,'apps/api'); runpy.run_module('homefit_api.demo',run_name='__main__')\"",
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down"
   },

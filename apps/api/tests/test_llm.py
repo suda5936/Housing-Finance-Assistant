@@ -88,6 +88,28 @@ def test_ollama_gateway_reports_unavailable_server() -> None:
     assert status.manual_fallback is True
 
 
+def test_ollama_gateway_blocks_non_local_endpoint() -> None:
+    gateway = OllamaGateway(Settings(ollama_base_url="https://llm.example.com"))
+
+    status = asyncio.run(gateway.status())
+
+    assert status.state is LLMState.UNAVAILABLE
+    assert status.manual_fallback is True
+
+
+def test_ollama_generation_blocks_non_local_endpoint() -> None:
+    gateway = OllamaGateway(Settings(ollama_base_url="https://llm.example.com"))
+
+    try:
+        asyncio.run(
+            gateway.generate_json(system_prompt="Return JSON.", user_prompt="private")
+        )
+    except ValueError as error:
+        assert "loopback" in str(error)
+    else:
+        raise AssertionError("Non-local Ollama endpoint must be rejected")
+
+
 def test_ollama_gateway_generates_json() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         assert request.url.path == "/api/chat"

@@ -64,6 +64,15 @@ class OllamaGateway:
                 detail="로컬 LLM이 설정에서 비활성화되어 있습니다.",
             )
 
+        if not self._settings.ollama_is_local:
+            return LLMStatus(
+                provider=self._settings.llm_provider,
+                model=self._settings.llm_model,
+                state=LLMState.UNAVAILABLE,
+                manual_fallback=True,
+                detail="개인정보 보호를 위해 로컬 Ollama 주소만 허용합니다.",
+            )
+
         try:
             async with self._client() as client:
                 response = await client.get("/api/tags")
@@ -109,6 +118,8 @@ class OllamaGateway:
         user_prompt: str,
         temperature: float = 0.0,
     ) -> dict[str, object]:
+        if not self._settings.ollama_is_local:
+            raise ValueError("Only a loopback Ollama endpoint is allowed")
         request_body = {
             "model": self._settings.llm_model,
             "stream": False,

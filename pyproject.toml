@@ -11,6 +11,7 @@ dependencies = [
   "fastapi>=0.139,<0.140",
   "pydantic-settings>=2.14,<3",
   "psycopg[binary]>=3.2,<4",
+  "pypdf>=6.14,<7",
   "python-multipart>=0.0.20,<1",
   "uvicorn[standard]>=0.51,<0.52",
 ]
@@ -31,6 +32,11 @@ package-dir = {"" = "apps/api"}
 [tool.setuptools.packages.find]
 where = ["apps/api"]
 include = ["homefit_api*"]
+
+[tool.setuptools.package-data]
+"homefit_api.policy_data" = ["*.json"]
+"homefit_api.evaluation_data" = ["*.json"]
+"homefit_api.demo_data" = ["*.json"]
 
 [tool.pytest.ini_options]
 addopts = "-p no:cacheprovider --strict-config --strict-markers --cov=homefit_api --cov-report=term-missing"
